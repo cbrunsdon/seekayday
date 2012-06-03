@@ -1,0 +1,45 @@
+<% first_date = days.first.day unless days.empty? %>
+<% first_date ||= DateTime.current %>
+<% month = first_date.month %>
+<% year = first_date.year %>
+
+<% end_of_month = Date.new(year, month, 1).end_of_month %>
+
+<% days_of_month = (1..end_of_month.day).collect { |x| Date.new(year, month, x) } %>
+<h2> <%= end_of_month.strftime('%B') %> </h2>
+
+
+<div class="calendar">
+  <div class="headers">
+  <% ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+    'Thursday', 'Friday', 'Saturday'].each do |x| %>
+    <div>
+      <%= x %>
+    </div>
+  <% end %>
+  </div>
+  <div class="days">
+    <% (0..(days_of_month.first.wday - 1)).each do |x| %>
+      <div>
+        &nbsp;
+      </div>
+    <% end %>
+    <% days_of_month.each do |day| %>
+      <div class="concrete-date day-<%= day.wday %> <%= 'current-day' if day == Date.current %>">
+        <div>
+          <div class="day-of-month">
+          <% if day_record = days.detect { |x| x.day == day } %>
+            <%= link_to day.day, day_record %></div>
+            <%= day_record.activity.name %>
+            <br />
+            <%= day_record.mood.name %>
+            <br />
+            <%= day_record.health_level.level %>
+          <% else %>
+            <%= link_to day.day, new_day_path(:day => { :day => day} )%></div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+// Place all the styles related to the days controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.calendar .headers > div, .calendar .days > div {
+  float: left;
+  width: 14%;
+}
+.calendar .days > div {
+  height: 100px;
+}
+.day-0 {
+  clear: left;
+}
+.calendar .headers {
+  font-weight: bold;
+  font-size: 12pt;
+  padding-bottom: 30px;
+}
+.concrete-date > div {
+  padding: 5px;
+}
+.day-of-month {
+  font-size: 18pt;
+}
+.current-day {
+  background-color: #eee;
+}
+.concrete-date:hover{
+  background-color: #ddd;
+}

@@ -1,0 +1,2 @@
+module HealthLevelsHelper
+end

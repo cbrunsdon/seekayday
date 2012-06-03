@@ -1,0 +1,5 @@
+== Seekayday
+
+Seekayday is a web app that will help you manage your life.
+
+You probably don't want/need it.
