@@ -13,6 +13,8 @@ gem 'devise'
 gem 'omniauth-openid'
 gem 'declarative_authorization'
 
+gem 'capistrano'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,7 +28,6 @@ group :assets do
 end
 group :production do
   gem 'mysql'
-  gem 'capistrano'
   gem 'rvm-capistrano'
 end
 group :development do
