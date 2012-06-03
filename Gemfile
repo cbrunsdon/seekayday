@@ -5,7 +5,6 @@ gem 'rails', '3.2.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'whenever'
 
 
@@ -13,6 +12,8 @@ gem 'whenever'
 gem 'devise'
 gem 'omniauth-openid'
 gem 'declarative_authorization'
+
+gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +26,11 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+group :production do
+  gem 'mysql'
+end
 group :development do
+  gem 'sqlite3'
   gem 'guard-bundler'
   gem 'guard-livereload'
   gem 'guard-rspec'
@@ -36,6 +41,7 @@ group :development do
   gem 'capistrano'
 end
 group :test do
+  gem 'sqlite3'
   gem 'spork'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
