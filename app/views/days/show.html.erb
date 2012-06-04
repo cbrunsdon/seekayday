@@ -17,6 +17,10 @@
   <strong><%= model_class.human_attribute_name(:mood_id) %>:</strong><br>
   <%= @day.mood.name %>
 </p>
+<p>
+  <strong><%= model_class.human_attribute_name(:alarm_time) %>:</strong><br>
+  <%= l @day.alarm_time if @day.alarm_time %>
+</p>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -9,7 +9,15 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
     flash[:error] = "You do not have permission to access that"
-    redirect_to root_path
+    redirect_to root_path if Rails.env.production?
+    return render :text => "no permissions", :status => 403 if !Rails.env.production?
   end
+
+  before_filter :set_user_time_zone
+  private
+  def set_user_time_zone
+    Time.zone = "Pacific Time (US & Canada)"
+  end
+
 
 end

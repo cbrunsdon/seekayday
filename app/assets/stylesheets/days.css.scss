@@ -20,7 +20,7 @@
 .concrete-date > div {
   padding: 5px;
 }
-.day-of-month {
+.concrete-date > a {
   font-size: 18pt;
 }
 .current-day {
@@ -28,4 +28,7 @@
 }
 .concrete-date:hover{
   background-color: #ddd;
+}
+.day-details {
+  font-size: 10pt;
 }

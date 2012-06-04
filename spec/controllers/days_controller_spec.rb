@@ -103,6 +103,32 @@ describe DaysController do
     end
   end
 
+  describe "GET current" do
+    describe 'with a day today' do
+      before do
+        @day = FactoryGirl.create :day, :day => Date.today
+      end
+      it 'returns todays day' do
+        expect {
+          get :current
+          assigns(:day).should eq(@day)
+        }.to change(Day, :count).by(0)
+      end
+    end
+    describe 'without an existing day' do
+      before do
+        FactoryGirl.create :mood
+        FactoryGirl.create :activity
+        FactoryGirl.create :health_level
+      end
+      it 'creates one' do
+        expect {
+          get :current
+          assigns(:day)
+        }.to change(Day, :count).by(1)
+      end
+    end
+  end
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested day" do

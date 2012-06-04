@@ -41,6 +41,9 @@ group :development do
   gem 'rspec-rails'
   gem 'capistrano'
   gem 'rvm-capistrano'
+
+  # keep logs sane for dev
+  gem 'quiet_assets'
 end
 group :test do
   gem 'sqlite3'

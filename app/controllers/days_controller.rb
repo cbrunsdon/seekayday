@@ -1,5 +1,5 @@
 class DaysController < ApplicationController
-  filter_resource_access
+  filter_resource_access :additional_collection => :current
 
   # GET /days
   # GET /days.json
@@ -72,6 +72,14 @@ class DaysController < ApplicationController
     respond_to do |format|
       format.html { redirect_to days_url }
       format.json { head :no_content }
+    end
+  end
+
+  def current
+    @day = Day.where(:day => Date.current).first
+    @day ||= Day.generate
+    respond_to do |format|
+      format.json { render json: @day }
     end
   end
 end

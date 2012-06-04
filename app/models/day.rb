@@ -1,5 +1,5 @@
 class Day < ActiveRecord::Base
-  attr_accessible :mood_id, :day, :activity_id, :health_level_id, :mood, :activity, :health_level
+  attr_accessible :mood_id, :day, :activity_id, :health_level_id, :mood, :activity, :health_level, :alarm_time
 
   belongs_to :mood
   belongs_to :activity

@@ -29,4 +29,12 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 days_path, :class => 'btn' %>
   </div>
+
+  <div class="control-group">
+    <%= f.label :alarm_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :alarm_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+
 <% end %>

@@ -11,12 +11,12 @@
 
 <div class="calendar">
   <div class="headers">
-  <% ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-    'Thursday', 'Friday', 'Saturday'].each do |x| %>
-    <div>
-      <%= x %>
-    </div>
-  <% end %>
+    <% ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+      'Thursday', 'Friday', 'Saturday'].each do |x| %>
+        <div>
+          <%= x %>
+        </div>
+    <% end %>
   </div>
   <div class="days">
     <% (0..(days_of_month.first.wday - 1)).each do |x| %>
@@ -25,21 +25,24 @@
       </div>
     <% end %>
     <% days_of_month.each do |day| %>
-      <div class="concrete-date day-<%= day.wday %> <%= 'current-day' if day == Date.current %>">
-        <div>
-          <div class="day-of-month">
-          <% if day_record = days.detect { |x| x.day == day } %>
-            <%= link_to day.day, day_record %></div>
-            <%= day_record.activity.name %>
-            <br />
-            <%= day_record.mood.name %>
-            <br />
-            <%= day_record.health_level.level %>
-          <% else %>
-            <%= link_to day.day, new_day_path(:day => { :day => day} )%></div>
+      <% day_record = days.detect { |x| x.day == day } %>
+      <% classes = ['concrete-date', "day-#{day.wday}"] %>
+      <% classes.push 'current-day' if day == Date.current %>
+      <% style = "" %>
+      <% style = "" if day_record %>
+      <%= content_tag 'div', :class => classes, :style => style do %>
+        <% if day_record %>
+          <%= link_to day.day, day_record, :style => "text-shadow: 1px 1px 1px #{text_benefit_color(day_record.health_level.level)}" %>
+
+          <%= content_tag 'div', :class => 'day-details' do %>
+            <%= content_tag :span, :style => "text-shadow: 1px 1px 1px #{text_benefit_color(day_record.activity.benefit_level)}" do %>
+              <%= day_record.activity.name %>
+            <% end %>
           <% end %>
-        </div>
-      </div>
+        <% else %>
+          <%= link_to day.day, new_day_path(:day => { :day => day} )%>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>
