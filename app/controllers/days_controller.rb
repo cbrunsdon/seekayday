@@ -78,7 +78,6 @@ class DaysController < ApplicationController
   def current
     @day = Day.where(:day => Date.current).first
     @day ||= Day.generate
-    @day.alarm_time = Time.current + 1.minutes
     respond_to do |format|
       format.json { render json: @day.to_json( :include => [
                                               :mood, :activity, :health_level ] ) }
