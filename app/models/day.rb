@@ -17,4 +17,8 @@ class Day < ActiveRecord::Base
       :activity => activities[rand(activities.count)],
       :health_level => health_levels[rand(health_levels.count)]
   end
+
+  def is_past_alarm?
+    self.alarm_time < Time.current
+  end
 end

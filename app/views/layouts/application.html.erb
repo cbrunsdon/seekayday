@@ -62,10 +62,16 @@
               <h3>Sidebar</h3>
               <ul class="nav nav-list">
                 <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+                <li><%= link_to "Today", current_days_path  %></li>
               </ul>
+            </div><!--/.well -->
+            <div class="well sidebar-today">
+              <% if day = Day.where(:day => Date.current).first %>
+                <h3><%= link_to 'Today', day %> - <%= day.day.to_s :short %></h3>
+                <%= content_tag 'div', "Your alarm #{ day.is_past_alarm? ? 'was' : 'is'}  set for #{day.alarm_time.to_s :time}" if day.alarm_time %>
+                <%= content_tag 'div', "You should be feeling #{day.mood.name}" if day.mood %>
+                <%= content_tag 'div', "You should: #{day.activity.name}" if day.activity %>
+              <% end %>
             </div><!--/.well -->
           </div><!--/span-->
         </div><!--/row-->
