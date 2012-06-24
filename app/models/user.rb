@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
     [:user]
   end
 
-
   # used for unapproved devise users
   def active_for_authentication?
     super && approved?
