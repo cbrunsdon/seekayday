@@ -79,6 +79,7 @@ class DaysController < ApplicationController
     @day = Day.where(:day => Date.current).first
     @day ||= Day.generate
     respond_to do |format|
+      format.html { redirect_to @day }
       format.json { render json: @day.to_json( :include => [
                                               :mood, :activity, :health_level ] ) }
     end

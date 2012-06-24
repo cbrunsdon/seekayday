@@ -114,6 +114,16 @@ describe DaysController do
           assigns(:day).should eq(@day)
         }.to change(Day, :count).by(0)
       end
+      it 'redirects you to the day if html' do
+        get :current
+        response.should redirect_to(@day)
+      end
+      it 'renders json if requested' do
+        get :current, :format => 'json'
+        response.body.should == @day.to_json( :include => [
+                                             :mood, :activity, :health_level ] )
+
+      end
     end
     describe 'without an existing day' do
       before do
